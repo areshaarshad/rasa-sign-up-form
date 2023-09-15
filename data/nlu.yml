@@ -1,0 +1,163 @@
+version: "3.1"
+nlu:
+- intent: inform
+  examples: |
+    - My name is [John Doe](name)
+    - Email address: [johndoe@example.com](email)
+    - My mobile number is [1234567890](mobile_number)
+    - Date of birth: [01-01-1990](dob)
+    - My name is [David Davis](name)
+    - Email address: [ddavis@example.com](email)
+    - My mobile number is [0987654321](mobile_number)
+    - Date of birth: [01-01-1999](dob)
+    - My name is [Anna Ma](name)
+    - Email address: [anna.ma@example.com](email)
+    - My mobile number is [1357924680](mobile_number)
+    - Date of birth: [01-10-1990](dob)
+    - My name is [Jane Robert](name)
+    - Email address: [jrobert@example.com](email)
+    - My mobile number is [1482593607](mobile_number)
+    - Date of birth: [11-01-1990](dob)
+    - My name is [Max Einstein](name)
+    - Email address: [max.e@example.com](email)
+    - My mobile number is [1579235098](mobile_number)
+    - Date of birth: [01-01-1980](dob)
+    - My name is [Joe Biden](name)
+    - Email address: [bjoe@example.com](email)
+    - My mobile number is [0192837465](mobile_number)
+    - Date of birth: [11-10-1970](dob)
+    - My name is [Alice Smith](name)
+    - Email address: [alice@example.com](email)
+    - My mobile number is [5555555555](mobile_number)
+    - Date of birth: [01-02-1985](dob)
+    - My name is [Emily Johnson](name)
+    - Email address: [emily@example.com](email)
+    - My mobile number is [6666666666](mobile_number)
+    - Date of birth: [05-05-1995](dob)
+    - My name is [Michael Brown](name)
+    - Email address: [michael@example.com](email)
+    - My mobile number is [7777777777](mobile_number)
+    - Date of birth: [08-08-1978](dob)
+    - My name is [Daniel Lee](name)
+    - Email address: [daniel@example.com](email)
+    - My mobile number is [9999999999](mobile_number)
+    - Date of birth: [12-12-2000](dob)
+    - My name is [Sophia Wilson](name)
+    - Email address: [sophia@example.com](email)
+    - My mobile number is [1111111111](mobile_number)
+    - Date of birth: [03-03-1993](dob)
+    - My name is [Liam Jones](name)
+    - Email address: [liam@example.com](email)
+    - My mobile number is [2222222222](mobile_number)
+    - Date of birth: [04-04-1984](dob)
+    - My name is [Olivia Taylor](name)
+    - Email address: [olivia@example.com](email)
+    - My mobile number is [3333333333](mobile_number)
+    - Date of birth: [09-09-1989](dob)
+    - My name is [Noah Brown](name)
+    - Email address: [noah@example.com](email)
+    - My mobile number is [4444444444](mobile_number)
+    - Date of birth: [10-10-1979](dob)
+    - My name is [Emma Garcia](name)
+    - Email address: [emma@example.com](email)
+    - My mobile number is [8888888888](mobile_number)
+    - Date of birth: [02-02-1992](dob)
+    - My name is [Liam Martinez](name)
+    - Date of birth: [07-07-1987](dob)
+    - My name is [Olivia Smith](name)
+    - Date of birth: [06-06-1986](dob)
+    - My name is [Noah Johnson](name)
+    - My name is [Emma Taylor](name)
+    - Date of birth: [11-11-1991](dob)
+    - My name is [Liam Brown](name)
+    - My name is [Olivia Wilson](name)
+    - My name is [Noah Lee](name)
+    - My name is [Emma Jones](name)
+    - My name is [Liam Taylor](name)
+    - My name is [Olivia Garcia](name)
+    - My name is [Noah Martinez](name)
+    - My name is [Emma Martin](name)
+    - My name is [Liam Davis](name)
+    - My name is [Olivia Martin](name)
+    - My name is [Noah Wilson](name)
+    - My name is [Liam Smith](name)
+    - My name is [Olivia Jones](name)
+    - My name is [Noah Taylor](name)
+    - My name is [Emma Wilson](name)
+    - My name is [Liam Johnson](name)
+    - My name is [Noah Davis](name)
+    - My name is [Emma Smith](name)
+    - My name is [Noah Garcia](name)
+    - My name is [Emma Davis](name)
+    - My name is [Liam Martin](name)
+    - [Emma](name)
+    - [John](name)
+    - [12312345645](mobile_number)
+    - [youjohn@hotmail.coom](email)
+    - [20-10-2000](dob)
+
+- intent: affirm
+  examples: |
+    - Yes
+    - That's correct
+    - Right
+    - Affirmative
+    - hi
+    - good to see you
+
+- intent: deny
+  examples: |
+    - No
+    - Incorrect
+    - Not right
+    - Deny
+    - bye
+
+- intent: signup_data
+  examples: |
+    - I want to sign up
+    - how can I sign up
+    - Enter data
+    - Sign up information
+    - Sign up data
+    - Enter sign up data
+
+- intent: affirm_data
+  examples: |
+    - Yes, please confirm.
+    - I confirm.
+    - Okay, it's confirmed.
+    - Confirm.
+    - Yeah
+
+- intent: deny_data
+  examples: |
+    - No, do not confirm.
+    - I deny.
+    - No, I don't confirm.
+    - Deny.
+    - Nope
+
+- intent: create_password
+  examples: |
+    - Create a password
+    - Generate a password
+    - Set my password
+    - I want to set my password
+    - Set login password
+    - Login password
+
+- intent: login
+  examples: |
+    - Log in
+    - Login with email and password
+    - Access my account
+    - Log in to my account
+
+# - intent: provide_email_password
+#   examples: |
+#     - My email is [user@example.com](email)
+#     - Here's my email [user@example.com](email) and password [password123](password)
+#     - I want to log in with email [user@example.com](email) and password [password123](password)
+#     - Email: [emmil@example.com](email)
+#     - Password: [Emily12-12-1990](password)

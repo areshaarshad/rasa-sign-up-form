@@ -1,0 +1,153 @@
+version: '3.1'
+intents:
+- affirm
+- bot_challenge
+- deny
+- goodbye
+- greet
+- inform
+- mood_great
+- mood_unhappy
+- signup_data
+- affirm_data 
+- create_password
+- login
+# - email_password
+
+entities:
+- email
+- name
+- dob
+- mobile_number
+- USER_SIGNED_IN
+- password
+
+slots:
+  name:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: name
+      influence_conversation: true
+  email:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: email
+      influence_conversation: true
+  mobile_number:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: mobile_number
+      influence_conversation: true
+  dob:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: dob
+      influence_conversation: true
+  password:
+    type: text
+    mappings:
+      - type: from_text
+        name: password
+  USER_SIGNED_IN:
+    type: bool
+    mappings:
+      - type: from_intent
+        intent: affirm
+        value: true
+      - type: from_intent
+        intent: deny
+        value: false
+
+forms:
+  user_data_form:
+    required_slots:
+      - name
+      - email
+      - mobile_number
+      - dob
+
+  login_form:
+    required_slots:
+      - email
+      - password
+   
+responses:
+
+  utter_login_successful:
+  - text: You have successfully logged in!
+
+  utter_login_failed:
+  - text: Login failed. Please check your credentials.
+
+  utter_login:
+  - text: Enter email and password to Login!
+
+  affirmation_response:
+  - text: Great! The data is confirmed.
+  denial_response:
+  - text: Okay.
+  invalid_response:
+  - text: Please answer with 'yes' or 'no'.
+  utter_greet:
+  - text: Hey! How are you?
+  utter_happy:
+  - text: Great, carry on!
+  utter_goodbye:
+  - text: Bye
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_signup_data:
+  - text: Enter the following information.
+  utter_ask_name:
+  - text: Please enter your name.
+  utter_ask_email:
+  - text: Thanks! What is your email address?
+  utter_ask_mobile_number:
+  - text: Please provide your mobile number (11 digits).
+  utter_ask_dob:
+  - text: Lastly, I need your date of birth in the format dd-mm-yyyy.
+  utter_confirm:
+  - text: |-
+      Here's what I have gathered:
+      Name: {name}
+      Email: {email}
+      Mobile Number: {mobile_number}
+      DOB: {dob}
+
+      Is this correct?
+  utter_thanks:
+  - text: Thank you! Your data has been submitted.
+  utter_submit:
+  - text: Your form has been submitted.
+  utter_slots_values:
+  - text: 'Here are the values you provided: {slots_values}'
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+
+actions:
+- utter_ask_email
+- utter_confirm
+- utter_signup_data
+- utter_slots_values
+- utter_submit
+- utter_ask_dob
+- utter_ask_name
+- utter_happy
+- utter_ask_mobile_number
+- validate_user_data_form
+- action_handle_affirmation
+- action_handle_denial
+- action_submit_data
+- action_confirm_data
+- action_create_password
+- validate_login
+- utter_login_successful
+- utter_login_failed
+- action_create_login

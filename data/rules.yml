@@ -1,0 +1,110 @@
+version: "3.1"
+
+rules:
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+# - rule: Password Generation
+#   steps:
+#   - intent: create_password
+#   - action: action_create_password
+
+
+- rule: Activate demographic_form
+  condition:
+  - active_loop: null 
+  steps:
+  - intent: signup_data
+  # - action: utter_signup_data
+  - action: user_data_form
+  - active_loop: user_data_form
+
+
+- rule: Submit demographic_form
+  condition:
+  - active_loop: user_data_form
+  steps:
+  - action: user_data_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_submit
+  - action: utter_confirm
+
+- rule: Handle Affirmation
+  condition:
+  - active_loop: null
+  steps:
+  - intent: affirm
+  - action: action_handle_affirmation
+  - action: action_submit_data
+  - intent: create_password
+  - action: action_create_password
+
+- rule: Activate login form
+  condition:
+  - active_loop: null 
+  steps:
+  - intent: login
+  - action: login_form
+  # - action: action_create_login
+  - active_loop: login_form
+
+- rule: Submit login form
+  condition:
+  - active_loop: login_form
+  steps:
+  - intent: login
+  - action: action_create_login
+  # - action: login_form
+  - active_loop: null
+  - action: validate_login
+  - action: utter_login_successful
+  - slot_was_set:
+    - USER_SIGNED_IN: true
+
+- rule: User denies login
+  condition:
+  - active_loop: login_form
+  steps:
+  - intent: deny
+  - action: utter_login_failed
+  - active_loop: null
+  - slot_was_set:
+    - USER_SIGNED_IN: false
+
+- rule: Confirm and Submit Data
+  condition:
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: data_confirmed
+  steps:
+  - action: utter_confirm
+  - intent: affirm_data
+  - action: action_submit_data
+
+- rule: Ask for More Information
+  condition:
+  - active_loop: user_data_form
+  steps:
+  - intent: deny
+  - action: validate_user_data_form
+
+- rule: Handle Denial
+  condition:
+  - active_loop: null
+  steps:
+  - action: utter_confirm
+  - intent: deny
+  - action: action_handle_denial
+
+
+
