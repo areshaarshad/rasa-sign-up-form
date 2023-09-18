@@ -1,18 +1,19 @@
 version: '3.1'
 intents:
-- affirm
-- bot_challenge
-- deny
-- goodbye
+
 - greet
 - inform
-- mood_great
-- mood_unhappy
-- signup_data
-- affirm_data 
 - create_password
-- login
+- create_login_password
 # - email_password
+- goodbye
+- bot_challenge
+- signup_data
+- affirm
+- deny
+- affirm_data
+- activate_login_form
+- submit_login_form
 
 entities:
 - email
@@ -50,8 +51,8 @@ slots:
   password:
     type: text
     mappings:
-      - type: from_text
-        name: password
+      - type: from_entity
+        entity: password
   USER_SIGNED_IN:
     type: bool
     mappings:
@@ -80,11 +81,15 @@ responses:
   utter_login_successful:
   - text: You have successfully logged in!
 
+  utter_create_password:
+  - text: |-
+      Your password is: {password}
+
   utter_login_failed:
   - text: Login failed. Please check your credentials.
 
-  utter_login:
-  - text: Enter email and password to Login!
+  utter_create_login_password:
+  - text: Enter email and password to log in!
 
   affirmation_response:
   - text: Great! The data is confirmed.

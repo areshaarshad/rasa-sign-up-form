@@ -147,17 +147,44 @@ nlu:
     - Set login password
     - Login password
 
-- intent: login
+- intent: activate_login_form
   examples: |
     - Log in
     - Login with email and password
     - Access my account
     - Log in to my account
 
-# - intent: provide_email_password
-#   examples: |
-#     - My email is [user@example.com](email)
-#     - Here's my email [user@example.com](email) and password [password123](password)
-#     - I want to log in with email [user@example.com](email) and password [password123](password)
-#     - Email: [emmil@example.com](email)
-#     - Password: [Emily12-12-1990](password)
+- intent: create_login_password
+  examples: |
+    - My email is [user@example.com](email)
+    - Here's my email [user@example.com](email) and password [password123](password)
+    - I want to log in with email [user@example.com](email) and password [password123](password)
+    - Email: [emmil@example.com](email)
+    - Password: [Emily12-12-1990](password)
+    - Email is [amma@qwr.com](email) and password is [amma12345674](password)
+    - My email: [bot@example.com](email)
+    - Here's my email [random.email@email.com](email) and password [myrandompassword](password)
+    - I log in with email [logmein@email.com](email) and password [letmein123](password)
+    - Email: [email123@example.com](email)
+    - Password: [secretPassword567](password)
+    - Email is [newuser@email.com](email), and password is [newuser123](password)
+    - My email is [user@example.com](email), and my password is [securePass123](password)
+    - Here's my email [johndoe@example.com](email) and password [P@ssw0rd!](password)
+    - I want to log in with email [user@example.com](email) and password [Access1234](password)
+    - Email: [emmil@example.com](email), Password: [MyP@ssw0rd](password)
+    - Password: [Emily12-12-1990](password), Email: [sample@example.com](email).
+    - Email is [emma@qwr.com](email), and the password is [password456](password)
+    - My email address is [johndoe@email.com](email), and my password is [SecureLogin123](password).
+    - This is my email: [jane.smith@example.com](email), and my password is [SecretPass123!](password)
+    - The email I use is [test.email@email.com](email), and my password is [TestPass2022](password)
+    - You can reach me at [contact.me@email.com](email), and my password is[ ContactMe567](password)
+    - For login, I use [login.email@email.com](email), and my password is [LogMeIn99](password)
+    - My email: [bot@example.com](email), and my password is [BotPass2023](password)
+    - Here's my email [random.email@email.com](email), and my password is [RandomPass@456](password)
+    - I log in with email [logmein@email.com](email), and my password is [LetMeIn#123](password)
+    - Email: [email123@example.com](email), and my password is [EmailPass789](password)
+    - Password: [secretPassword567](password), [Email: example@email.com](email).
+    - Email is [newuser@email.com](email), and the password is [NewUserPass!](password)
+    - My email address: [emailaddress@email.com](email), and my password is [Email123$](password)
+    - This is my email [my.email@email.com](email), and my password is [MyPassWord@1](password)
+    - The email I use is [example@email.com](email), and my password is [ExamplePass123](password)

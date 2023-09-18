@@ -12,12 +12,6 @@ rules:
   - intent: bot_challenge
   - action: utter_iamabot
 
-# - rule: Password Generation
-#   steps:
-#   - intent: create_password
-#   - action: action_create_password
-
-
 - rule: Activate demographic_form
   condition:
   - active_loop: null 
@@ -39,6 +33,11 @@ rules:
   - action: utter_submit
   - action: utter_confirm
 
+- rule: Password Generation
+  steps:
+  - intent: create_password
+  - action: action_create_password
+
 - rule: Handle Affirmation
   condition:
   - active_loop: null
@@ -46,25 +45,24 @@ rules:
   - intent: affirm
   - action: action_handle_affirmation
   - action: action_submit_data
-  - intent: create_password
-  - action: action_create_password
+  # - intent: create_password
+  # - action: action_create_password
 
 - rule: Activate login form
   condition:
   - active_loop: null 
   steps:
-  - intent: login
+  - intent: activate_login_form
+  - action: utter_create_login_password
   - action: login_form
-  # - action: action_create_login
   - active_loop: login_form
 
 - rule: Submit login form
   condition:
   - active_loop: login_form
   steps:
-  - intent: login
-  - action: action_create_login
-  # - action: login_form
+  - intent: submit_login_form
+  - action: login_form
   - active_loop: null
   - action: validate_login
   - action: utter_login_successful

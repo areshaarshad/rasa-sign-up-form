@@ -34,6 +34,9 @@ from rasa_sdk.types import DomainDict
 from datetime import datetime
 import re
 import logging
+from rasa_sdk.events import SlotSet
+
+
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
@@ -151,20 +154,20 @@ class ActionCreatePassword(Action):
         user_email = tracker.get_slot("email")
         user_phone = tracker.get_slot("mobile_number")
         user_dob = tracker.get_slot("dob")
-        generated_password = self.generate_password(user_name, user_email, user_phone, user_dob)
+        # generated_password = self.generate_password(user_name, user_email, user_phone, user_dob)
 
-        tracker.slots["password"] = generated_password
+        # tracker.slots["password"] = generated_password
 
-        tracker.slots["USER_SIGNED_IN"] = True
-
-        dispatcher.utter_message(f"Your password is: {generated_password}")
+        # tracker.slots["USER_SIGNED_IN"] = True
+        password = user_name.replace(" ", "").lower() + user_dob.replace("-","")
+        dispatcher.utter_message(f"Your password is: {password}")
         
 
-        return []
-
-    def generate_password(self, user_name: str, user_email: str, user_phone: str, user_dob: str) -> str:
-        password = user_name.replace(" ", "").lower() + user_dob.replace("-","") 
         return [SlotSet("password", password)]
+
+    # def generate_password(self, user_name: str, user_email: str, user_phone: str, user_dob: str) -> str:
+         
+    #     return []
     
 class ActionCreateLogin(Action):
     def name(self) -> Text:
@@ -176,13 +179,15 @@ class ActionCreateLogin(Action):
         tracker: Tracker,
         domain: Dict[Text, Any],
     ) -> List[Dict[Text, Any]]:
-        email = tracker.get_slot("email")
-        password = tracker.get_slot("{generated_password}")
+        login_email = tracker.get_slot("email")
+        login_password = tracker.get_slot("password")
+        print(f"Email: {login_email}")
+        print(f"Password: {login_password}")
 
-        dispatcher.utter_message(f"Email: {email}")
-        dispatcher.utter_message(f"Password: {password}")
+        dispatcher.utter_message(f"Email: {login_email}")
+        dispatcher.utter_message(f"Password: {login_password}")
         dispatcher.utter_message("You are now signed in.")
-        return []
+        # return []
 
 
 class ValidateLoginAction(Action):
@@ -195,6 +200,8 @@ class ValidateLoginAction(Action):
         tracker: Tracker,
         domain: Dict[Text, Any],
     ) -> List[Dict[Text, Any]]:
+        recognized_intent = tracker.latest_message['intent']['name']
+        print(f"Recognized Intent: {recognized_intent}")
 
         email = tracker.get_slot("email")
         password = tracker.get_slot("password")
@@ -220,7 +227,7 @@ class UtterLoginSuccessfulAction(Action):
         else:
             dispatcher.utter_message("Login failed. Please check your credentials.")
 
-        return []
+        # return []
 
 
 
